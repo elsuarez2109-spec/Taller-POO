@@ -27,3 +27,50 @@ public class taller1{
         System.out.println("La multiplicacion es = "+ (x*y));
     }
 }
+
+public class clase{
+    public static int valor;
+    public static void main(String[]args){
+        int valor=10;
+        System.out.println(valor);
+        listar();
+        clase w=new clase();
+        w.mostrar();
+        
+    }
+    public static void listar(){
+        System.out.println("Hello World listar" );
+        int valor=20; //No afecta con el nombre de las otras variables por que es propia del metodo
+        System.out.println(valor);
+    }
+    private void mostrar(){
+        System.out.println("Hello World mostrar");
+        int valor=30;
+    }
+}
+class metodos{
+    public void mostrar(){
+        System.out.println("Hello World mostrar");
+        int valor=30;
+    }
+    protected void ver(){
+        System.out.println("Hello World ver");
+        int valor=40;
+    }
+}
+
+
+public class Main {
+    public static void main(String[] args) {
+        Main x=new Main();
+        x.listar("juan");
+    }
+    public void listar(String v){ //Recibe un parametro tipo String
+        System.out.println("Listar "+v);
+        int r=sueldo(100); //Envia sueldo al metodo
+        System.out.println(r);
+    }
+    private int sueldo(int s){
+        return s*100;
+    }
+}
