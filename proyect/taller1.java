@@ -74,3 +74,117 @@ public class Main {
         return s*100;
     }
 }
+//3. crear los getter y setter y crear una  clase para ejecutar el préstamo de libros
+import java.util.Scanner;
+class Libro {
+    private String titulo;
+    private String autor;
+    private int ejemplares;
+    private int prestados;
+
+    //constructor por defecto
+    public Libro() {
+    }
+    public void setTitulo(String titulo){
+        this.titulo=titulo;
+    }
+    public String getTitulo() {
+        return titulo;
+    }
+    public void setAutor(String autor){
+        this.autor=autor;
+    }
+    public String getAutor() {
+        return autor;
+    }
+    public void setEjemplares(int ejemplares){
+        this.ejemplares=ejemplares;
+    }
+    public int getEjemplares() {
+        return ejemplares;
+    }
+    public void setPrestados(int prestados){
+        this.prestados=prestados;
+    }
+    public int getPrestados() {
+        return prestados;
+    }
+    //constructor con parámetros
+    public Libro(String titulo, String autor, int ejemplares, int prestados) {                                    
+        this.titulo = titulo;
+        this.autor = autor;
+        this.ejemplares = ejemplares;
+        this.prestados = prestados;
+    }
+
+
+ //método para realizar el prestamo de un libro
+    public boolean prestamo() {
+        if (prestados < ejemplares) {
+            prestados++;
+            return true;
+        }
+        return false;
+    }
+
+    //método para realizar la devolución de un libro
+    public boolean devolucion() {
+        if (prestados != 0) {
+            prestados--;
+            return true;
+        }
+        return false;
+    }
+
+    //método toString sobrescrito para mostrar los datos de la clase Libro
+    @Override
+    public String toString() {
+        return "titulo: " + titulo + "\nautor: " + autor +
+                  "\nejemplares: " + ejemplares + "\nprestados: " + prestados;                                    
+    }
+    public static void main(String []args){
+        Scanner sc = new Scanner(System.in);
+        System.out.print("Ingrese el título del libro: ");
+        String titulo = sc.nextLine();
+        System.out.print("Ingrese el autor del libro: ");
+        String autor = sc.nextLine();
+        System.out.print("Ingrese la cantidad de ejemplares totales: ");
+        int ejemplares = sc.nextInt();
+        System.out.print("Ingrese la cantidad de ejemplares ya prestados: ");
+        int prestados = sc.nextInt();
+        Libro miLibro = new Libro(titulo, autor, ejemplares, prestados);
+        int opcion;
+        do {
+            System.out.println("1. Mostrar información del libro");
+            System.out.println("2. Realizar préstamo");
+            System.out.println("3. Realizar devolución");
+            System.out.println("4. Salir");
+            System.out.print("Seleccione una opción: ");
+            opcion = sc.nextInt();
+            switch (opcion) {
+                case 1:
+                    System.out.println("\n" + miLibro);
+                    break;
+                case 2:
+                    if (miLibro.prestamo()) {
+                        System.out.println("\nPréstamo realizado con éxito.");
+                    } else {
+                        System.out.println("\nNo se pudo realizar el préstamo. No hay ejemplares disponibles.");
+                    }
+                    break;
+                case 3:
+                    if (miLibro.devolucion()) {
+                        System.out.println("\nDevolución realizada con éxito.");
+                    } else {
+                        System.out.println("\nNo se pudo realizar la devolución.");
+                    }
+                    break;
+                case 4:
+                    System.out.println("\nSaliendo del sistema");
+                    break;
+                default:
+                    System.out.println("\nOpción no válida. Intente de nuevo.");
+            }
+        } while (opcion != 4);
+    }
+}
